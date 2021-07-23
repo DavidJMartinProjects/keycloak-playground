@@ -1,0 +1,25 @@
+server:
+  port: 8888
+
+keycloak:
+  realm: demo-realm
+  resource: demo-springboot
+  auth-server-url: http://localhost:80/auth
+  credentials:
+    secret: 7265064e-f578-4aae-b970-e42f4bb84766
+  bearer-only: true
+  principal-attribute: preferred_username
+  use-resource-role-mappings: true
+  ssl-required: external
+
+  security-constraints:
+    - authRoles:
+        - ROLE_MANAGER
+      securityCollections:
+        - patterns:
+            - /api/manager
+    - authRoles:
+        - ROLE_ADMIN
+      securityCollections:
+        - patterns:
+            - /api/admin
